@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO.Compression;
 
 namespace Login
 {
@@ -12,11 +9,19 @@ namespace Login
     {
         private readonly string _filePath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Login.ConfigurationManager"/> class.
+        /// </summary>
+        /// <param name="filePath">File path.</param>
         public ConfigurationManager(string filePath)
         {
             _filePath = filePath;
         }
 
+        /// <summary>
+        /// Gets the users async.
+        /// </summary>
+        /// <returns>The users async.</returns>
         public async Task<Dictionary<string, string>> GetUsersAsync()
         {
             Dictionary<string, string> users = new Dictionary<string, string>();
@@ -37,6 +42,12 @@ namespace Login
             }
         }
 
+
+        /// <summary>
+        /// Saves the users async.
+        /// </summary>
+        /// <returns>The users async.</returns>
+        /// <param name="users">Users.</param>
         public async Task SaveUsersAsync(Dictionary<string, string> users)
         {
             using (FileStream fileStream = new FileStream(_filePath, FileMode.OpenOrCreate))

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace Login
 {
     public class CryptographyController
     {
-        public CryptographyController()
-        {
-            
-        }
-
-		public static string EncryptPassword(string password)
+		/// <summary>
+        /// Encrypts the password.
+        /// </summary>
+        /// <returns>The password.</returns>
+        /// <param name="password">Password.</param>
+        public static string EncryptPassword(string password)
 		{
 			UnicodeEncoding ByteConverter = new UnicodeEncoding();
             using (var provider = new SHA512Managed())

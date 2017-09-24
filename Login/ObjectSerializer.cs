@@ -7,7 +7,12 @@ namespace Login
 {
     public class ObjectSerializer
     {
-
+        /// <summary>
+        /// Deserializes the object.
+        /// </summary>
+        /// <returns>The object.</returns>
+        /// <param name="result">Result.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
         public static T DeserializeObject<T>(byte[] result)
             where T : class
         {
@@ -31,6 +36,12 @@ namespace Login
             return item;
         }
 
+        /// <summary>
+        /// Serializes the object.
+        /// </summary>
+        /// <returns>The object.</returns>
+        /// <param name="item">Item.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
         public static byte[] SerializeObject<T>(T item)
             where T : class
         {

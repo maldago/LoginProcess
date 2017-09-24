@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Login
 {
@@ -12,6 +11,11 @@ namespace Login
             _users = users;
         }
 
+        /// <summary>
+        /// Login the specified user.
+        /// </summary>
+        /// <returns>The login.</returns>
+        /// <param name="user">User.</param>
         public LoginStatus Login(IUser user)
         {
             try

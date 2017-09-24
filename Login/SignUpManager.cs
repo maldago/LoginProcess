@@ -4,19 +4,28 @@ namespace Login {
 
     public class SignUpManager : ISignUpManager
     {
-        public SignUpManager()
+        private IRegistrationManager _registrationManager;
+        private ILoginManager _loginManager;
+        private object _configurationManager;
+        private string _dataFile;
+
+        public SignUpManager(ILoginManager loginManager, IRegistrationManager registrationManager, IConfigurationManager configurationManager, string dataFile)
         {
-            
+            _loginManager = loginManager;
+            _registrationManager = registrationManager;
+			_configurationManager = configurationManager;
+			_dataFile = dataFile;
         }
 
-        public async Task<UserResult> RegisterAsync(IUser user)
+        public LoginStatus Login(IUser user)
         {
-            return Task.Factory.StartNew<UserResult>(() => { return null; });
+            return _loginManager.Login(user);
+
         }
 
-        public LoginStatus  Login()
+        public RegistrationStatus Register(IUser user)
         {
-            return LoginStatus.Succeeded;
+            return _registrationManager.Register(user);
         }
     }
 }

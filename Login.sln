@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login", "Login\Login.csproj", "{99E9000D-15A7-490B-BA61-40C98102B3D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginProcess", "Login\LoginProcess.csproj", "{99E9000D-15A7-490B-BA61-40C98102B3D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login.Tests", "Login.Tests\Login.Tests.csproj", "{2FD8C640-665D-4672-80D7-B7252C3246EC}"
 EndProject

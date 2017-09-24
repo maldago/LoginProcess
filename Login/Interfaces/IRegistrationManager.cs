@@ -1,8 +1,7 @@
 ﻿namespace Login
 {
-    public interface ISignUpManager
+    public interface IRegistrationManager
     {
         RegistrationStatus Register(IUser user);
-        LoginStatus Login(IUser user);
     }
 }

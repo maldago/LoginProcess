@@ -43,7 +43,15 @@
     <Compile Include="LoginStatus.cs" />
     <Compile Include="Interfaces\ISignUpManager.cs" />
     <Compile Include="Interfaces\IUser.cs" />
-    <Compile Include="Interfaces\UserResult.cs" />
+    <Compile Include="Interfaces\IRegistrationManager.cs" />
+    <Compile Include="RegistrationManager.cs" />
+    <Compile Include="RegistrationStatus.cs" />
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Interfaces\IConfigurationManager.cs" />
+    <Compile Include="Interfaces\ILoginManager.cs" />
+    <Compile Include="LoginManager.cs" />
+    <Compile Include="CryptographyController.cs" />
+    <Compile Include="ObjectSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

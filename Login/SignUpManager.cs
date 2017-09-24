@@ -6,7 +6,7 @@ namespace Login {
     {
         private IRegistrationManager _registrationManager;
         private ILoginManager _loginManager;
-        private object _configurationManager;
+        private IConfigurationManager _configurationManager;
         private string _dataFile;
 
         public SignUpManager(ILoginManager loginManager, IRegistrationManager registrationManager, IConfigurationManager configurationManager, string dataFile)
@@ -19,13 +19,20 @@ namespace Login {
 
         public LoginStatus Login(IUser user)
         {
-            return _loginManager.Login(user);
+            var result = _registrationManager.CheckUserExists(user);
+            if(result == RegistrationStatus.UserExists)
+                return _loginManager.Login(user);
+            return LoginStatus.UserDoesNotExist;
 
         }
 
         public RegistrationStatus Register(IUser user)
         {
-            return _registrationManager.Register(user);
+            var registrationResult = _registrationManager.Register(user);
+            if (registrationResult == RegistrationStatus.Success)
+                _configurationManager.SaveUsersAsync(_registrationManager.Users);
+            return registrationResult;
+
         }
     }
 }

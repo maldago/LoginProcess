@@ -8,24 +8,18 @@ namespace Login
     {
         public CryptographyController()
         {
+            
         }
 
-		public static byte[] EncryptPassword(string password)
+		public static string EncryptPassword(string password)
 		{
 			UnicodeEncoding ByteConverter = new UnicodeEncoding();
-			byte[] encrypterPassword;
-			using (RSACryptoServiceProvider provider = new RSACryptoServiceProvider())
-				encrypterPassword = provider.Encrypt(ByteConverter.GetBytes(password), false);
-			return encrypterPassword;
+            using (var provider = new SHA512Managed())
+            {
+                var encryptedPassword = provider.ComputeHash(ByteConverter.GetBytes(password));
+                return ByteConverter.GetString(encryptedPassword);
+            }
 		}
 
-		public static string DecryptPassword(byte[] encryptedPassword)
-		{
-			UnicodeEncoding byteConverter = new UnicodeEncoding();
-			string password;
-			using (RSACryptoServiceProvider provider = new RSACryptoServiceProvider())
-				password = byteConverter.GetString(provider.Decrypt(encryptedPassword, false));
-			return password;
-		}
     }
 }

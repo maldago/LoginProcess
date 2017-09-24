@@ -5,8 +5,9 @@ namespace Login
 
     public class RegistrationManager : IRegistrationManager
     {
-        Dictionary<string, byte[]> Users;
-        public RegistrationManager(Dictionary<string, byte[]> users)
+        public Dictionary<string, string> Users { get; private set; }
+
+        public RegistrationManager(Dictionary<string, string> users)
         {
             Users = users;
         }
@@ -18,8 +19,7 @@ namespace Login
             {
                 try
                 {
-                    byte[] encrypterPassword = CryptographyController.EncryptPassword(user.Password);
-
+                    string encrypterPassword = CryptographyController.EncryptPassword(user.Password);
                     Users.Add(user.EmailAddress, encrypterPassword);
                     status = RegistrationStatus.Success;
                 }

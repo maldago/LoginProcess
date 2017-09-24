@@ -5,7 +5,7 @@ namespace Login
     {
         Success,
         Failed,
-        WrongPassword,
+        InvalidPassword,
         UserDoesNotExist
     }
 }

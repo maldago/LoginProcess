@@ -28,12 +28,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="NSubstitute">
-      <HintPath>..\packages\NSubstitute.2.0.3\lib\net45\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
@@ -52,9 +46,6 @@
     <Compile Include="LoginManager.cs" />
     <Compile Include="CryptographyController.cs" />
     <Compile Include="ObjectSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />

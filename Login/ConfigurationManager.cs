@@ -17,16 +17,17 @@ namespace Login
             _filePath = filePath;
         }
 
-        public async Task<Dictionary<string, byte[]>> GetUsersAsync()
+        public async Task<Dictionary<string, string>> GetUsersAsync()
         {
-            Dictionary<string, byte[]> users = new Dictionary<string, byte[]>();
-            using (FileStream fileStream = new FileStream(_filePath, FileMode.Open))
+            Dictionary<string, string> users = new Dictionary<string, string>();
+            using (FileStream fileStream = new FileStream(_filePath, FileMode.OpenOrCreate))
             {
                 byte[] result = new byte[fileStream.Length];
                 await fileStream.ReadAsync(result, 0, (int)fileStream.Length);
 				try
                 {
-                    users = ObjectSerializer.DeserializeObject<Dictionary<string, byte[]>>(result);
+                    if(result.Length > 0)
+                        users = ObjectSerializer.DeserializeObject<Dictionary<string, string>>(result);
                 }
                 catch (Exception ex) 
                 {
@@ -36,7 +37,7 @@ namespace Login
             }
         }
 
-        public async Task SaveUsersAsync(Dictionary<string, byte[]> users)
+        public async Task SaveUsersAsync(Dictionary<string, string> users)
         {
             using (FileStream fileStream = new FileStream(_filePath, FileMode.OpenOrCreate))
 			{

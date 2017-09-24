@@ -5,9 +5,9 @@ namespace Login
 {
     public class LoginManager : ILoginManager
     {
-        private Dictionary<string, byte[]> _users;
+        private Dictionary<string, string > _users;
 
-        public LoginManager(Dictionary<string, byte[]> users)
+        public LoginManager(Dictionary<string, string> users)
         {
             _users = users;
         }
@@ -16,25 +16,18 @@ namespace Login
         {
             try
             {
-                return Validate(user);
-            }
+				if (_users.ContainsKey(user.EmailAddress))
+				{
+					if (CryptographyController.EncryptPassword(user.Password).Equals(_users[user.EmailAddress]))
+						return LoginStatus.Success;
+					return LoginStatus.InvalidPassword;
+				}
+				return LoginStatus.UserDoesNotExist;
+			}
             catch
             {
                 return LoginStatus.Failed;
             }
         }
-
-        private LoginStatus Validate(IUser user)
-        {
-            if( _users.ContainsKey(user.EmailAddress))
-            {
-                var unencryptedPassword = CryptographyController.DecryptPassword(_users[user.EmailAddress]);
-                if (user.Password.Equals(unencryptedPassword))
-                    return LoginStatus.Success;
-                return LoginStatus.WrongPassword;
-            }
-            return LoginStatus.UserDoesNotExist;
-
-		}
     }
 }

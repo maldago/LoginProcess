@@ -5,7 +5,7 @@ namespace Login
 {
     public interface IConfigurationManager
     {
-        Task<Dictionary<string, byte[]>> GetUsersAsync();
-        Task SaveUsersAsync(Dictionary<string, byte[]> users);
+        Task<Dictionary<string, string>> GetUsersAsync();
+        Task SaveUsersAsync(Dictionary<string, string> users);
     }
 }
